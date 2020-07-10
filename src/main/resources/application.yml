@@ -9,3 +9,7 @@ spring:
     username: sa
     password:
     driverClassName: org.h2.Driver
+    
+    
+server:
+  port: 8111
