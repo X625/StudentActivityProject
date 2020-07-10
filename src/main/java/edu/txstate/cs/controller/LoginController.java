@@ -11,8 +11,8 @@ public class LoginController {
 		return "login";
 	}
 	
-	@GetMapping("/register")
+	@GetMapping({"/register","/signup"})
 	public String showRegistrationPage() {
-		return "register";
+		return "signup";
 	}
 }
