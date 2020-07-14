@@ -3,19 +3,13 @@ package edu.txstate.cs;
 import java.time.LocalDate;
 import java.util.Arrays;
 
+import edu.txstate.cs.model.dto.*;
+import edu.txstate.cs.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import edu.txstate.cs.model.dto.Book;
-import edu.txstate.cs.model.dto.Department;
-import edu.txstate.cs.model.dto.Event;
-import edu.txstate.cs.model.dto.Meal;
 import edu.txstate.cs.model.nonedto.EventType;
-import edu.txstate.cs.repository.BookRepo;
-import edu.txstate.cs.repository.DepartmentRepo;
-import edu.txstate.cs.repository.EventRepo;
-import edu.txstate.cs.repository.MealRepo;
 
 @Component
 public class DbInitializer implements CommandLineRunner{
@@ -31,6 +25,9 @@ public class DbInitializer implements CommandLineRunner{
 	
 	@Autowired
 	EventRepo eventRepo;
+
+	@Autowired
+	PersonRepo person;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -38,6 +35,13 @@ public class DbInitializer implements CommandLineRunner{
 		initializeEvents();
 		initializeMeals();
 		initializeBooks();
+		initalizePerson();
+	}
+
+	private void initalizePerson()
+	{
+		Person person1 = new Person("test", "tester", "tester", "tester@test.com");
+		person.save(person1);
 	}
 	
 	

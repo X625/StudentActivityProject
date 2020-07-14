@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.NaturalId;
 
 import edu.txstate.cs.model.nonedto.Address;
@@ -54,6 +56,8 @@ public class Person {
 	private Gender gender = Gender.Unknown;
 
 	@ManyToOne
+	@JoinColumn(name="department_id")
+	@Cascade(org.hibernate.annotations.CascadeType.PERSIST)
 	private Department department;
 
 	private String phoneNumber;

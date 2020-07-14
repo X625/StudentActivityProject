@@ -12,8 +12,11 @@ import javax.persistence.UniqueConstraint;
 
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
@@ -30,6 +33,8 @@ public class Department {
 	
 	
 	@OneToMany(mappedBy = "department")
+	@Cascade(CascadeType.ALL)
+	@JsonIgnore
 	private Set<Person> people;
 	
 	
