@@ -5,11 +5,15 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import edu.txstate.cs.model.nonedto.EventType;
 import lombok.Getter;
@@ -18,6 +22,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@JsonInclude(Include.NON_NULL)
 public class Event {
 	
 	@Id
@@ -33,7 +38,7 @@ public class Event {
 	@NotNull
 	private LocalDate date;
 	
-	@ManyToMany(mappedBy = "events")
+	@ManyToMany(mappedBy = "events", fetch = FetchType.LAZY)
 	private Set<Person> people;
 	
 	

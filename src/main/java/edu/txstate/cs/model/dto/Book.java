@@ -5,10 +5,14 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +21,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@JsonInclude(Include.NON_NULL)
 public class Book {
 	
 	@Id
@@ -41,7 +46,8 @@ public class Book {
 	@OneToMany(
 	        mappedBy = "book",
 	        cascade = CascadeType.ALL,
-	        orphanRemoval = true
+	        orphanRemoval = true,
+	        fetch = FetchType.LAZY
 	    )
 	private List<PersonBook> personBookList;
 	

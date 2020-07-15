@@ -11,11 +11,13 @@ import edu.txstate.cs.model.dto.Book;
 import edu.txstate.cs.model.dto.Department;
 import edu.txstate.cs.model.dto.Event;
 import edu.txstate.cs.model.dto.Meal;
+import edu.txstate.cs.model.dto.Person;
 import edu.txstate.cs.model.nonedto.EventType;
 import edu.txstate.cs.repository.BookRepo;
 import edu.txstate.cs.repository.DepartmentRepo;
 import edu.txstate.cs.repository.EventRepo;
 import edu.txstate.cs.repository.MealRepo;
+import edu.txstate.cs.repository.PersonRepo;
 
 @Component
 public class DbInitializer implements CommandLineRunner{
@@ -32,15 +34,35 @@ public class DbInitializer implements CommandLineRunner{
 	@Autowired
 	EventRepo eventRepo;
 	
+	
+	@Autowired
+	PersonRepo personRepo;
+	
 	@Override
 	public void run(String... args) throws Exception {
 		initializeDepartments();
 		initializeEvents();
 		initializeMeals();
 		initializeBooks();
+		initializePeople();
 	}
 	
 	
+	private void initializePeople() {
+		// TODO Auto-generated method stub
+		
+		Department d1 = depRepo.findByName("Computer Science");
+		Department d2 = depRepo.findByName("Biology");
+		Person p1 = new Person("aidin","aaa","aidinx625","x625@gmail",d1);
+		Person p2 = new Person("nagendra","bbb","nagendra", "nagendra@gmail",d1);
+		Person p3 = new Person("sivaranjani","ccc","sivaranjani", "sivaranjani@gmail",d1);
+		Person p4 = new Person("shishira","ddd", "shishira", "shishira@gmail",d1);
+		Person p5 = new Person("aidin","eee","aidin", "aidin@gmail",d2);
+		personRepo.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+		
+	}
+
+
 	private void initializeDepartments() {
 		Department d1 = new Department("Computer Science");
 		Department d2 = new Department("Biology");

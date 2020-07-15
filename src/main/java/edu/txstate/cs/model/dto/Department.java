@@ -4,13 +4,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +23,7 @@ import lombok.Setter;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
 @Getter
 @Setter
+@JsonInclude(Include.NON_NULL)
 public class Department {
 	
 	@Id
@@ -29,7 +34,8 @@ public class Department {
 	private String name;
 	
 	
-	@OneToMany(mappedBy = "department")
+	@OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
+	@JsonBackReference
 	private Set<Person> people;
 	
 	

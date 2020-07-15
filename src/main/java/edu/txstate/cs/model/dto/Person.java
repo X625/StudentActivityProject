@@ -1,12 +1,12 @@
 package edu.txstate.cs.model.dto;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -15,14 +15,20 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.NaturalId;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import edu.txstate.cs.model.nonedto.Address;
 import edu.txstate.cs.model.nonedto.Gender;
 import edu.txstate.cs.model.nonedto.UserRole;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,22 +36,26 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "username", "email" }))
+@JsonInclude(Include.NON_NULL)
 public class Person {
 
 	@Id
 	@GeneratedValue
 	private long id;
-	
 
 	@NotNull
 	private String fname;
-	
+
 	@NotNull
 	private String lname;
-	
+
+	@Transient
+	@Setter(value = AccessLevel.NONE)
+	private String displayName;
+
 	@NaturalId
 	private String username;
-	
+
 	@NaturalId
 	private String email;
 
@@ -54,6 +64,7 @@ public class Person {
 	private Gender gender = Gender.Unknown;
 
 	@ManyToOne
+	@JsonManagedReference
 	private Department department;
 
 	private String phoneNumber;
@@ -63,36 +74,29 @@ public class Person {
 
 	private UserRole role = UserRole.Student;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "person_event", joinColumns = @JoinColumn(name = "person_id"), inverseJoinColumns = @JoinColumn(name = "event_id"))
 	private Set<Event> events;
-	
-	
-	
-	@OneToMany(
-	        mappedBy = "person",
-	        cascade = CascadeType.ALL,
-	        orphanRemoval = true
-	    )
+
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private List<PersonBook> personBookList;
-	
-	
-	
-	@OneToMany(
-	        mappedBy = "person",
-	        cascade = CascadeType.ALL,
-	        orphanRemoval = true
-	    )
+
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private List<PersonMeal> personMealList;
-	
-	
-	public Person() {}
+
+	public Person() {
+	}
 
 	public Person(String fname, String lname, String username, String email) {
 		this.fname = fname;
 		this.lname = lname;
 		this.username = username;
 		this.email = email;
+	}
+
+	public Person(String fname, String lname, String username, String email, Department department) {
+		this(fname, lname, username, email);
+		this.department = department;
 	}
 
 	@Override
@@ -129,5 +133,8 @@ public class Person {
 		return true;
 	}
 
+	public String getDisplayName() {
+		return this.fname + " " + this.lname;
+	}
 
 }
