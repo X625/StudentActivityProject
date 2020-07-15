@@ -5,7 +5,7 @@
 html,body{
 background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
 background-size: cover;
-background-repeat:repeat;
+/* background-repeat:repeat; */
 height: 100%;
 font-family: 'Numans', sans-serif;
 }
@@ -35,7 +35,7 @@ height: auto;
 margin-left:10px;
 margin-top: 50px;
 margin-bottom: auto;
-max-width:100%;
+/* max-width:100%; */
 background-color: rgba(0,0,0,0.5) !important;	
 }
 .social_icon span{
