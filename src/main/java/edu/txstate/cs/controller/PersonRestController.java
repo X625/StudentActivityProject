@@ -16,7 +16,7 @@ import edu.txstate.cs.service.PersonService;
 public class PersonRestController {
 	
 	@Autowired
-	private PersonService repo;
+	private PersonService service;
 	
 	@PostMapping("/search")
 	public List<PersonBTO> searchPeople(@RequestBody Map<String, String> params){
@@ -25,7 +25,7 @@ public class PersonRestController {
 		String fname = params.get("fname");
 		String lname = params.get("lname");
 		
-		return repo.searchPeople(deptName, fname, lname);
+		return service.searchPeople(deptName, fname, lname);
 	}
 	
 	
