@@ -13,7 +13,7 @@ import edu.txstate.cs.service.PersonService;
 
 
 @RestController
-public class PersonController {
+public class PersonRestController {
 	
 	@Autowired
 	private PersonService repo;
@@ -27,5 +27,8 @@ public class PersonController {
 		
 		return repo.searchPeople(deptName, fname, lname);
 	}
+	
+	
+	
 
 }

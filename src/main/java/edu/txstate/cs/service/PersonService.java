@@ -17,7 +17,7 @@ public class PersonService {
 	@Autowired
 	private PersonRepo repo;
 	
-	// This is a bad approach to filter result!
+	// This is a horrible approach to filter result!
 	// never do it in real project
 	// lazy way to get it done just for grading purpose :D
 	public List<PersonBTO> searchPeople(String deptName, String fname, String lname){
