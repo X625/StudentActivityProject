@@ -5,6 +5,7 @@ background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg'
 background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
+color: white;
 font-family: 'Numans', sans-serif;
 }
 
@@ -92,4 +93,30 @@ color: white;
 
 .links a{
 margin-left: 4px;
+}
+
+.meal{
+	background-color: rgba(0,0,0,0.5);
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+	width: 250px;
+	height: 250px;
+}
+
+.table{
+	border: 1px solid white;
+	border-collapse: collapse;
+}
+
+.th{
+	background-color: #FFC312;
+	color: Black;
+	font-size: 14px;
+}
+
+.td{
+	font-size: 14px;
 }
