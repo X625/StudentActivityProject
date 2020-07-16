@@ -3,7 +3,7 @@
 html,body{
 background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
 background-size: cover;
-background-repeat: no-repeat;
+background-repeat: repeat;
 height: 100%;
 font-family: 'Numans', sans-serif;
 }
@@ -22,16 +22,52 @@ background-color: rgba(0,0,0,0.5) !important;
 }
 
 .card-signup{
-height: 500px;
+height: 670px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
 background-color: rgba(0,0,0,0.5) !important;
 }
 
+.card-services{
+height: auto;
+margin-top: auto;
+margin-bottom: auto;
+width: 1200px;
+background-color: rgba(0,0,0,0.5) !important;
+}
+
+.card-forgotPassword{
+height: auto;
+margin-top: auto;
+margin-bottom: auto;
+width: 400px;
+background-color: rgba(0,0,0,0.5) !important;
+
+}
+
 .social_icon span{
 font-size: 60px;
 margin-left: 10px;
+color: #FFC312;
+}
+
+.social_icon_signup span{
+font-size: 60px;
+margin-left: 10px;
+color: #FFC312;
+}
+
+.forgotPassword_icon span{
+font-size: 60px;
+margin-left: 10px;
+color: #FFC312;
+}
+
+.services_icon span{
+font-size: 60px;
+margin-left: 15px;
+margin-right: 15px;
 color: #FFC312;
 }
 
@@ -42,12 +78,33 @@ cursor: pointer;
 
 .card-header h3{
 color: white;
+
+}
+
+.forgot-card-header h3{
+margin-right:10px;
+margin-left: 10px;
+color: white;
+text-align:center;
+
+}
+.card-header p{
+margin-top: -30px;
+text-align: center;
+color: white;
+font-size: 12px;
 }
 
 .social_icon{
 position: absolute;
 right: 20px;
 top: -45px;
+}
+
+.social_icon_signup{
+position: absolute;
+right: 20px;
+top: -5px;
 }
 
 .input-group-prepend span{
@@ -80,8 +137,25 @@ color: black;
 background-color: #FFC312;
 width: 100px;
 }
+.reset_btn{
+
+color: black;
+background-color: #FFC312;
+width: 100%;
+}
+
+.next_btn{
+color: black;
+background-color: #FFC312;
+width: 100px;
+}
 
 .login_btn:hover{
+color: black;
+background-color: white;
+}
+
+.reset_btn:hover{
 color: black;
 background-color: white;
 }
@@ -93,3 +167,108 @@ color: white;
 .links a{
 margin-left: 4px;
 }
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: "montserrat",sans-serif;
+  box-sizing: border-box;
+}
+
+.services-section{
+  background: url(bg.jpg);
+  background-size: cover;
+  padding: 60px 0;
+}
+.inner-width{
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+  overflow: hidden;
+}
+.section-title{
+  text-align: center;
+  color: #ddd;
+  text-transform: uppercase;
+  font-size: 30px;
+}
+.border{
+  width: 160px;
+  height: 2px;
+  background: #82ccdd;
+  margin: 40px auto;
+}
+.services-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.forgotPassword-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.service-box{
+  max-width: 25%;
+  padding: 10px;
+  text-align: center;
+  color: #ddd;
+  cursor: pointer;
+}
+
+.service-icon{
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  border: 3px solid #FFC312;;
+  color: #FFC312;
+  transform: rotate(45deg);
+  margin-bottom: 30px;
+  margin-top: 16px;
+  transition: 0.3s linear;
+}
+.service-icon i{
+  line-height: 70px;
+  transform: rotate(-45deg);
+  font-size: 26px;
+}
+.service-icon span{
+  line-height: 70px;
+  transform: rotate(-45deg);
+  font-size: 26px;
+}
+.service-box:hover .service-icon{
+  background:#FFC312;;
+  color: black;
+}
+.service-title{
+  font-size: 18px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.service-desc{
+  font-size: 14px;
+}
+
+@media screen and (max-width:960px) {
+  .service-box{
+    max-width: 45%;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .service-box{
+    max-width: 50%;
+  }
+}
+
+@media screen and (max-width:480px) {
+  .service-box{
+    max-width: 100%;
+  }
+}
+
+
+
