@@ -1,147 +1,99 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Login Page</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="/peopleSearchStyle.css">
+<title>Person Search Page</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/peopleSearchStyle.css">
 </head>
 <body>
-<div class="container">
-	<div class="d-flex justify-content-center h-100">
-		<div class="card">
-			<div class="card-header">
-				<h2>People Search 
-				<i class="fas fa-search"></i></h2>
-				<div class="d-flex justify-content-end social_icon">
-					
-					<span><i class="fas fa-home"></i></span>
-					
+	<div class="container">
+		<div class="d-flex justify-content-center h-100">
+			<div class="card">
+				<div class="card-header">
+					<h2>
+						People Search <i class="fas fa-search"></i>
+					</h2>
+					<div class="d-flex justify-content-end social_icon">
+						<span><i class="fas fa-home"></i></span>
+
+					</div>
+				</div>
+
+
+				<div class="card-body">
+					<form class="form-inline" method="post"
+						th:action="@{/peoplesearch}" th:object="${person}">
+						<div class="input-group form-group">
+							<input type="text" class="form-control" placeholder="first name"
+								th:field="*{fname}">
+						</div>
+
+						<div class="input-group form-group">
+							<input type="text" class="form-control" placeholder="last name"
+								th:field="*{lname}">
+						</div>
+
+						<div class="input-group form-group">
+							<input type="text" class="form-control" placeholder="department"
+								th:field="*{departmentName}">
+						</div>
+
+						<div class="form-group">
+							<input type="submit" value="Search"
+								class="btn float-right login_btn">
+						</div>
+
+					</form>
+
+
+					<div class="profile-card" th:each="p : ${people}">
+
+						<div class="d-flex justify-content-center user_icon">
+							<span><i class="fas fa-user"></i></span>
+						</div>
+						<div class="d-flex justify-content-center card-header">
+							<h2 th:text=${p.displayName}>Harry Potter</h2>
+						</div>
+						<div class="d-flex justify-content-center card-header">
+							<h6 th:text=${p.departmentName}>Computer science</h6>
+						</div>
+						<div class="d-flex justify-content-center card-header">
+							<div>
+
+								<div class="desc">
+									<i class="fas fa-user"></i><span th:text=${p.email}>1234</span>
+								</div>
+				
+								<div class="desc">
+									<i class="fas fa-user"></i> <span th:text=${p.phoneNumber}>harry@txstate.edu</span>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
 				</div>
 			</div>
-			
-			
-			<div class="card-body">
-				<form class="form-inline">
-					<div class="input-group form-group">
-						
-						<input type="text" class="form-control" placeholder="first name">
-					</div>
-					
-					<div class="input-group form-group">
-						
-						<input type="password" class="form-control" placeholder="last name">
-					</div>
-					
-					<div class="input-group form-group">
-						<input type="password" class="form-control" placeholder="department">
-					</div>
-							
-					<div class="form-group">
-						<input type="submit" value="GO" class="btn float-right login_btn">
-					</div>
-					
-				</form>
-	
-
-		<div class="profile-card">
-			
-			    <div class="d-flex justify-content-center user_icon">
-					<span><i class="fas fa-user"></i></span>
-				</div>
-				<div class="d-flex justify-content-center card-header">
-					<h2>Harry Potter</h2>
-				</div>
-					<div class="d-flex justify-content-center card-header">
-					<h6>Computer science</h6>
-				</div>
-				<div class="d-flex justify-content-center card-header">
-					<div>
-                    <div class="desc"><i class="fas fa-user"></i> 510 123 4567</div>
-                    <div class="desc"><i class="fas fa-user"></i> harry@txstate.edu</div>
-               		</div>		
-				</div>	
-					
-		</div>
-	
-		<div class="profile-card">
-			
-			    <div class="d-flex justify-content-center user_icon">
-					<span><i class="fas fa-user"></i></span>
-				</div>
-				<div class="d-flex justify-content-center card-header">
-					<h2>Harry Potter</h2>
-				</div>
-					<div class="d-flex justify-content-center card-header">
-					<h6>Computer science</h6>
-				</div>
-				<div class="d-flex justify-content-center card-header">
-					<div>
-                    <div class="desc"><i class="fas fa-user"></i> 510 123 4567</div>
-                    <div class="desc"><i class="fas fa-user"></i> harry@txstate.edu</div>
-               		</div>		
-				</div>	
-					
-		</div>
-		
-		
-		
-		<div class="profile-card">
-			
-			    <div class="d-flex justify-content-center user_icon">
-					<span><i class="fas fa-user"></i></span>
-				</div>
-				<div class="d-flex justify-content-center card-header">
-					<h2>Harry Potter</h2>
-				</div>
-					<div class="d-flex justify-content-center card-header">
-					<h6>Computer science</h6>
-				</div>
-				<div class="d-flex justify-content-center card-header">
-					<div>
-                    <div class="desc"><i class="fas fa-user"></i> 510 123 4567</div>
-                    <div class="desc"><i class="fas fa-user"></i> harry@txstate.edu</div>
-               		</div>		
-				</div>	
-					
-		</div>
-		
-		
-	
-		<div class="profile-card">
-			
-			    <div class="d-flex justify-content-center user_icon">
-					<span><i class="fas fa-user"></i></span>
-				</div>
-				<div class="d-flex justify-content-center card-header">
-					<h2>Harry Potter</h2>
-				</div>
-					<div class="d-flex justify-content-center card-header">
-					<h6>Computer science</h6>
-				</div>
-				<div class="d-flex justify-content-center card-header">
-					<div>
-                    <div class="desc"><i class="fas fa-user"></i> 510 123 4567</div>
-                    <div class="desc"><i class="fas fa-user"></i> harry@txstate.edu</div>
-               		</div>		
-				</div>	
-					
 		</div>
 
-		
 	</div>
-	</div>
-	</div>
-	
-	
-</div>
-
-				
-			
 
 
 
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 </html>
