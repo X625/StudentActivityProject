@@ -94,6 +94,7 @@ color: white;
 margin-left: 4px;
 }
 
+
 .tfoot{
 	background-color: #FFC312;
 	color: Black;
@@ -110,3 +111,9 @@ margin-left: 4px;
 	width: 100px;
 	height: 60px;
 }
+
+.responsive{
+	width: auto;
+	height: 240px;
+}
+
