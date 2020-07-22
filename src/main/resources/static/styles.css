@@ -95,8 +95,19 @@ color: white;
 margin-left: 4px;
 }
 
+
 .meal{
 	background-color: rgba(0,0,0,0.5);
+}
+
+.tfoot{
+	background-color: #FFC312;
+	color: Black;
+	font-size: 14px;
+}
+
+.zone{
+	background-color: rgba(0,0.5,0.5,0.5);
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: 20px;
@@ -120,3 +131,14 @@ margin-left: 4px;
 .td{
 	font-size: 14px;
 }
+
+	width: 100px;
+	height: 60px;
+}
+
+.responsive{
+	width: auto;
+	height: 240px;
+}
+
+
