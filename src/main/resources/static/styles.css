@@ -93,3 +93,8 @@ color: white;
 .links a{
 margin-left: 4px;
 }
+
+.responsive{
+	width: auto;
+	height: 240px;
+}
