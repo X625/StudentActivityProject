@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Books Page</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+ <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+	<div th:insert="navbar :: navbar"></div>
+	<div class="container container-margin">
+		<div class="row">
+			<div class="col-lg-8 col-md-12 pt-5">
+				<div class="card">
+				  <div class="card-header">
+				    <h2>Book Search</h2>
+				    <div class="d-flex justify-content-end social_icon">
+				      <span><i class="fas fa-search"></i></span>
+				    </div>
+				  </div>
+				  <div class="card-body">
+				    <div class="container-fluid">
+				      <form method="post" th:action="@{/books}" th:object="${book}">
+				        <div class="controls">
+				          <div class="row">
+				            <div class="col-md-12">
+				              <div class="form-group">
+				                <input type="text" class="form-control" placeholder="Title" th:field="*{title}">
+				              </div>
+				            </div>
+				            <div class="col-md-12">
+				              <div class="form-group">
+				                <input type="text" class="form-control" placeholder="Author" th:field="*{author}">
+				              </div>
+				            </div>
+				            <div class="col-md-12">
+				              <div class="form-group">
+				                <input type="text" class="form-control" placeholder="ISBN" th:field="*{isbn}">
+				              </div>
+				            </div>
+				            <div class="col-md-12">
+				              <div class="form-group">
+				                <button class="btn btn-warning" style="width: 100%">Search</button>
+				              </div>
+				            </div>
+				          </div>
+				        </div>
+				      </form>
+				    </div>
+				    
+				    <hr>
+					
+					<div>
+					
+						<ul class="list-group list-group-flush">
+					    	<li class="list-group-item" th:each="book: ${books}">
+					    	<div class="media black">
+							  <img class="mr-3" th:src="${book.image}" style="height:150px;">
+							  <div class="media-body">
+							    <h5 class="mt-0" th:text="${book.title}"></h5>
+							    <div class="block">
+							    	<strong>Author(s): </strong><span th:text="${book.author}"></span>
+							    </div>
+							    <div class="block">
+							    	<strong>ISBN: </strong><span th:text="${book.isbn}"></span>
+							    </div>
+							    <div class="block" th:if="${book.library != null}"> 
+							    	<strong>Library: </strong><span th:text="${book.library}"></span>
+							    </div>
+							     <div th:unless="${book.library != null}">
+							     	<div class="block">
+							     		<strong>Store: </strong><span th:text="${book.store}"></span><br>
+							     	</div>
+							      	<div class="block">
+							      		 <strong>Price: </strong>
+							      		 <span  th:classappend="${total > 200} ? line-through" th:text="${book.price}"></span>
+							      		 <span  th:if="${total > 200}"  th:text="${#numbers.formatDecimal(book.price * 0.9, 0, 2)}"></span>
+							      	</div>
+							    	<form method="post" th:action="@{/purchase/books/{id}(id=${book.id})}" >
+							    		<button th:disabled="${book.purchased}"  class="btn btn-warning float-right">Purchase</button>
+							    	</form>
+							     </div>				   
+							  </div>
+							</div>
+					    	
+					    	</li>
+					  	</ul>
+						<div class="error">
+							<span  th:if="${books != null && books.size() == 0}"> No record found</span>
+						</div>
+					</div>
+				    
+				  </div>
+				</div>
+			</div>
+			
+			<div class="col pt-5">
+				<div class="card">
+				  <div class="card-header">
+				    <h4>Purchase History</h4>
+				    <div class="d-flex justify-content-end social_icon">
+				      <span><i class="fas fa-book-reader"></i></span>
+				    </div>
+				  </div>
+				
+				  <div class="card-body">
+				    <div class="container-fluid">
+						<table class="table">
+						  	<tbody>
+						    	<tr th:each="book: ${userbooks}">
+						     		<td th:text="${book.title}">></td>
+						     		<td th:text="${book.price}">></td>
+						    	</tr>
+						  	</tbody>
+						</table>
+						
+						<div th:if="${userbooks != null && userbooks.size() > 0}">
+							<hr>
+							<strong class="float-left">Total:</strong>
+							<strong class="float-right" th:text="${#numbers.formatDecimal(total, 0, 2)}"></strong>
+						</div>
+				    </div>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script src="https://kit.fontawesome.com/dd0ec8033e.js"></script>
+</body>
+</html>

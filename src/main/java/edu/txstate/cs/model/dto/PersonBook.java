@@ -1,42 +1,44 @@
 package edu.txstate.cs.model.dto;
 
-import java.util.Date;
-
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import lombok.Getter;
 import lombok.Setter;
 
 
-@Entity
 @Getter
 @Setter
-@JsonInclude(Include.NON_NULL)
+@Entity
 public class PersonBook {
 	
-	@Id
-	@GeneratedValue
-	private long id;
-	
+	@EmbeddedId
+	private PersonBookId id = new PersonBookId();
+
+
+	@MapsId("personId")
+	@JoinColumn(name = "PERSON_ID")
 	@ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("personId")
-	private Person person;
+	private User person;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	
     @MapsId("bookId")
+    @JoinColumn(name = "BOOK_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
 	private Book book;
-		
-	private double pricePaid;
 	
-	private Date purchaseDate;
+	private double paid;
+	
+	public PersonBook() {}
+
+	public PersonBook(User person, Book book) {
+		this.person = person;
+		this.book = book;
+	}
 	
 
 }

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Homepage</title>
+<link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+ <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+</head>
+<body>
+	<div class="container">
+		<div class="d-flex justify-content-center pt-5">
+			<div class="card">
+				<div class="card-header">
+					<h1 th:text="${'Welcome ' + username}"></h1>
+					<div class="d-flex justify-content-end social_icon">
+						<a th:href="@{/doLogout}"><span><i class="fas fa-sign-out-alt"></i></span></a>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col mt-5">
+								<div class="card rounded-lg dashboardcard"
+									style="width: 15rem; display: inline-block">
+									<img class="card-img-top dashboardimg" src="images/home/profile.png">
+									<div class="card-body dashboardcard">
+										<h5 class="card-title">Profile</h5>
+										<a href="/profile" class="stretched-link"></a>
+									</div>
+								</div>
+							</div>
+							<div class="col mt-5">
+								<div class="card rounded-lg dashboardcard"
+									style="width: 15rem; display: inline-block">
+									<img class="card-img-top dashboardimg" src="images/home/book.png">
+									<div class="card-body dashboardcard">
+										<h5 class="card-title">Book Search</h5>
+										<a href="/books" class="stretched-link"></a>
+									</div>
+								</div>
+							</div>
+							<div class="col mt-5">
+								<div class="card rounded-lg dashboardcard"
+									style="width: 15rem; display: inline-block">
+									<img class="card-img-top dashboardimg" src="images/home/people.png">
+									<div class="card-body dashboardcard">
+										<h5 class="card-title">People Search</h5>
+										<a href="/people" class="stretched-link"></a>
+									</div>
+								</div>
+							</div>
+
+							<div class="col mt-5">
+								<div class="card rounded-lg dashboardcard"
+									style="width: 15rem; display: inline-block">
+									<img class="card-img-top dashboardimg" src="images/home/meal.png">
+									<div class="card-body dashboardcard">
+										<h5 class="card-title">Meals Purchase</h5>
+										<a href="/meals" class="stretched-link"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col mt-5">
+								<div class="card rounded-lg dashboardcard"
+									style="width: 15rem; display: inline-block">
+									<img class="card-img-top dashboardimg" src="images/home/bus.png">
+									<div class="card-body dashboardcard">
+										<h5 class="card-title">Bus Tickets</h5>
+										<a href="/tickets" class="stretched-link"></a>
+									</div>
+								</div>
+							</div>
+							<div class="col mt-5">
+								<div class="card rounded-lg dashboardcard"
+									style="width: 15rem; display: inline-block">
+									<img class="card-img-top dashboardimg" src="images/home/event.png">
+									<div class="card-body dashboardcard">
+										<h5 class="card-title">Events</h5>
+										<a href="/events" class="stretched-link"></a>
+									</div>
+								</div>
+							</div>
+							<div class="col mt-5">
+								<div class="card rounded-lg dashboardcard"
+									style="width: 15rem; display: inline-block">
+									<img class="card-img-top dashboardimg" src="images/home/roommate.png">
+									<div class="card-body dashboardcard">
+										<h5 class="card-title">Roommate Search</h5>
+										<a href="/roommates" class="stretched-link"></a>
+									</div>
+								</div>
+							</div>
+							<div class="col mt-5">
+								<div class="card rounded-lg dashboardcard"
+									style="width: 15rem; display: inline-block">
+									<img class="card-img-top dashboardimg" src="images/home/election.png">
+									<div class="card-body dashboardcard">
+										<h5 class="card-title">Election</h5>
+										<a href="/election" class="stretched-link"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script src="https://kit.fontawesome.com/dd0ec8033e.js"></script>
+</body>
+</html>

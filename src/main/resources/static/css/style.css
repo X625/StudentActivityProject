@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+body {
+	background-image: url('/images/back.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 100%;
+	font-family: 'Numans', sans-serif;
+	color: white;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-color: #464646;
+}
+
+.container {
+	height: 100%;
+	align-content: center;
+}
+
+.card {
+	margin-top: auto;
+	margin-bottom: auto;
+	background-color: rgba(0, 0, 0, 0.5) !important;
+	/* 	min-height: 500px; */
+	height: auto;
+	width: 100%;
+}
+
+.social_icon {
+	position: absolute;
+	right: 20px;
+	top: -45px;
+}
+
+.form-group.required.control-label:before{
+   color: red;
+   content: "*";
+   position: absolute;
+   margin-left: -10px;
+}
+
+.social_icon span {
+	font-size: 60px;
+	margin-left: 10px;
+	color: #FFC312;
+}
+
+hr {
+	background-color: #fff;
+	border-top: 2px dashed #8c8b8b;
+}
+
+.table {
+	font-size: 14px;
+}
+
+.thead {
+	background-color: #FFC312;
+	color: black;
+}
+
+.error {
+	text-align: center;
+}
+
+.block {
+	display: block;
+}
+
+strong {
+	color: red;
+}
+
+.black {
+	color: black;
+}
+
+.calendar {
+	width: 40px;
+}
+
+.font12 {
+	font-size: 12px;
+}
+
+.whitebordergroup {
+	border: 1px solid white;
+}
+
+.mp {
+	/* 	padding-top: 5px;
+ */
+	
+}
+
+@media ( max-width : 992px) {
+	.whitebordergroup {
+		border: 1px solid white;
+		padding-bottom: 20px;
+		margin-bottom: 15px;
+	}
+	.smallscreen {
+		margin-bottom: 20px;
+	}
+}
+
+.white {
+	color: white;
+	font-size: 20px;
+	text-align: center;
+}
+
+.strip {
+	background: repeating-linear-gradient(45deg, transparent, transparent 10px, #ccc
+		10px, #ccc 20px), linear-gradient(to bottom, #eee, #999)
+}
+
+.candidate-img {
+	width: 100px;
+	height: auto;
+}
+
+.redbackground {
+	background: red;
+}
+
+.dashboardcard {
+	height: 200px;
+	text-align: center;
+}
+
+.dashboardimg {
+	width: 100px;
+	margin-top:25px;
+}
+
+.logincard {
+	margin-top:100px;
+	padding: 30px;
+}
+
+span.required{
+   color: red;
+   content: "*";
+   position: absolute;
+   margin-left: 10px;
+}
+
+.error {
+	color:red;
+	text-align: center;
+	background:highlight;
+}
+
+.success {
+	color:green;
+	text-align: center;
+	background:highlight;
+}
+
+
+.container-margin{
+	margin-top:100px;
+}
+/* 
+.line-through{
+	font-style: 
+} */

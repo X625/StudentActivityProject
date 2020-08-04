@@ -3,13 +3,11 @@ package edu.txstate.cs.model.dto;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -21,50 +19,41 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@JsonInclude(Include.NON_NULL)
 public class Book {
 	
 	@Id
 	@GeneratedValue
+	@Column(name="BOOK_ID")
 	private long id;
 	
-	@NotNull
 	private String title;
 	
-	@NotNull
-	@ElementCollection
-	private List<String> authors;
-	
-	@NotNull
+	private String author;
 	
 	private String isbn;
 	
-	@NotNull
-	private String bookStore;
+	private String store;
 	
+	private String library;
 	
-	@OneToMany(
-	        mappedBy = "book",
-	        cascade = CascadeType.ALL,
-	        orphanRemoval = true,
-	        fetch = FetchType.LAZY
-	    )
-	private List<PersonBook> personBookList;
-	
-	private String libraryLocation;
+	private String imageUrl;
 	
 	private double price;
+	
+	@OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<PersonBook> personBooks;
+	
+	public Book() {}
 
-	public Book(@NotNull String title, @NotNull List<String> authors, @NotNull String isbn, @NotNull String bookStore,
-			String libraryLocation, double price) {
+	public Book(String title, String author,  String isbn, String imageUrl,
+			String library, String store, double price) {
 		this.title = title;
-		this.authors = authors;
+		this.author = author;
 		this.isbn = isbn;
-		this.bookStore = bookStore;
-		this.libraryLocation = libraryLocation;
+		this.imageUrl = imageUrl;
+		this.store = store;
+		this.library = library;
 		this.price = price;
-	}
-	
-	
+	}	
 
 }

@@ -1,14 +1,14 @@
 package edu.txstate.cs.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import edu.txstate.cs.model.dto.Event;
-
 import java.time.LocalDate;
 import java.util.List;
 
-public interface EventRepo extends JpaRepository<Event, Long>{
+import org.springframework.data.repository.CrudRepository;
 
-    public List<Event> findByDateBetween(LocalDate after, LocalDate before);
+import edu.txstate.cs.model.dto.Event;
+
+public interface EventRepo extends CrudRepository<Event, Long>{
+
+     List<Event> findByDateBetween(LocalDate after, LocalDate before);
 
 }

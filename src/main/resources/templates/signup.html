@@ -1,104 +1,163 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Sign Up</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="/styles.css">
+<title>Sign Up</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+
 </head>
 <body>
-<div class="container">
-	<div class="d-flex justify-content-center h-100">
-		<div class="card card-signup">
-			<div class="card-header">
-				<h3>Sign Up</h3>
-				<div class="d-flex justify-content-end social_icon_signup">
-					<span><i class="fas fa-user-plus"></i></span>
+	<div class="container">
+		<div class="d-flex justify-content-center pt-5">
+			<div class="card">
+				<div class="card-header">
+					<h2>Sign Up</h2>
+					<P class="blocktext error" th:text="${error}"></P>
+					<div class="d-flex justify-content-end social_icon">
+						<span><i class="fas fa-address-card"></i></span>
+					</div>
 				</div>
-			</div>
-			<div class="card-body">
-				<form>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
-						</div>
-						<input type="text" class="form-control" placeholder="firstname">
+
+				<div class="card-body">
+					<div class="container-fluid">
+						<form method="post" th:action="@{/signup}" th:object="${user}" class="needs-validation" novalidate>
+							<div class="form-group row">
+								<label for="fname" class="col-sm-4 col-form-label">First
+									name<span class="required">*</span>
+								</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="fname"
+										placeholder="First name" th:field="*{fname}" required>
+									<div class="invalid-feedback">Mandatory field</div>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="lname" class="col-sm-4 col-form-label">Last
+									name<span class="required">*</span>
+								</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="lname"
+										placeholder="Last name" th:field="*{lname}" required>
+									<div class="invalid-feedback">Mandatory field</div>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="address" class="col-sm-4 col-form-label">Address</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="address"
+										placeholder="Street address" th:field="*{address.street}">
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="city" class="col-sm-4 col-form-label">City</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="city"
+										placeholder="City" th:field="*{address.city}">
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="state" class="col-sm-4 col-form-label">State</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="state"
+										placeholder="State" th:field="*{address.state}">
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="zipcode" class="col-sm-4 col-form-label">Zipcode</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="zipcode"
+										placeholder="Zipcode" th:field="*{address.zipCode}">
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="email" class="col-sm-4 col-form-label">Email
+									address<span class="required">*</span>
+								</label>
+								<div class="col-sm-8">
+									<input type="email" class="form-control" id="email"
+										placeholder="Email address" th:field="*{email}" required>
+									<div class="invalid-feedback">Provide valid email address</div>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="username" class="col-sm-4 col-form-label">Username<span
+									class="required">*</span></label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="username"
+										placeholder="Username" th:field="*{username}" required>
+									<div class="invalid-feedback">Mandatory field</div>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="password" class="col-sm-4 col-form-label">Password<span
+									class="required">*</span></label>
+								<div class="col-sm-8">
+									<input type="password" class="form-control" id="password"
+										placeholder="Password" th:field="*{password}" required>
+									<div class="invalid-feedback">Mandatory field</div>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<label for="cpassword" class="col-sm-4 col-form-label">Confirm
+									password<span class="required">*</span>
+								</label>
+								<div class="col-sm-8">
+									<input type="password" class="form-control" id="cpassword"
+										placeholder="Confirm password" th:field="*{cpassword}" required>
+									<div class="invalid-feedback">Mandatory field</div>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-12">
+									<input type="submit" class="btn btn-warning float-right"
+										value="Sign Up" id="btnSubmit">
+								</div>
+							</div>
+						</form>
 					</div>
-					
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
-						</div>
-						<input type="text" class="form-control" placeholder="lastname">
-					</div>
-					
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-home"></i></span>
-						</div>
-						<input type="text" class="form-control" placeholder="address">
-					</div>
-					
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-address-book"></i></span>
-						</div>
-						<input type="text" class="form-control" placeholder="city">
-					</div>
-					
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-globe"></i></span>
-						</div>
-						<input type="text" class="form-control" placeholder="state">
-					</div>
-					
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa fa-map-marker"></i></span>
-						</div>
-						<input type="text" class="form-control" placeholder="zip code">
-					</div>
-					
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-at"></i></span>
-						</div>
-						<input type="text" class="form-control" placeholder="email address">
-					</div>
-					
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
-						</div>
-						<input type="text" class="form-control" placeholder="login name">
-					</div>
-					
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
-						</div>
-						<input type="password" class="form-control" placeholder="password">
-					</div>
-					
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
-						</div>
-						<input type="password" class="form-control" placeholder="Confirm password">
-					</div>
-					
-					<div class="form-group">
-						<input type="submit" value="Sign Up" class="btn float-right login_btn">
-					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
 
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script src="https://kit.fontawesome.com/dd0ec8033e.js"></script>
+	<script>
+		(function() {
+			'use strict';
+			window.addEventListener('load',
+					function() {
+						var forms = document.getElementsByClassName('needs-validation');
+						var validation = Array.prototype.filter.call(forms,
+								function(form) {
+									form.addEventListener('submit', function(
+											event) {
+										if (form.checkValidity() === false) {
+											event.preventDefault();
+											event.stopPropagation();
+										}
+										form.classList.add('was-validated');
+									}, false);
+								});
+					}, false);
+		})();
+	</script>
 </body>
 </html>

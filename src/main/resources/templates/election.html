@@ -1,94 +1,98 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Election</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="/styles.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<title>Election Page</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+ <link rel="stylesheet" type="text/css" href="/css/style.css">
+
 </head>
+<body>
+	<div th:insert="navbar :: navbar"></div>
+	<div class="container container-margin">
+		<div class="d-flex justify-content-center pt-5">
+			<div class="card">
+				<div class="card-header">
+					<h2>Election</h2>
+					<div class="d-flex justify-content-end social_icon">
+						<span><i class="fas fa-vote-yea"></i></span>
+					</div>
+				</div>
 
-<body> 
+				<div class="card-body">
+					<div class="container">
+						<div th:if="${voted}">
+						
+							<div id="piechart" style="width: 100%;"></div>
 
-  <div class="container">
-    <h3>Student Union Election</h3>
-	<h6>Select your candidate for the head of Student Union</h6>
-	
-	 <div class="row">
-	  <div class="col-md-4" "form-check form-check-inline">
-	  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-	  <label class="form-check-label" for="inlineRadio1">John</label>
-	  
+						</div>
+						<div th:unless="${voted}">
+							<form method="post" th:action="@{/election}"
+								th:object="${candidate}">
+								<div class="form-group row">
+									<div class="col"
+										th:each="candidate : ${T(edu.txstate.cs.model.enums.Candidate).values()}">
+										<div class="media">
+											<input type="radio" name="radiogroup" class="form-control"
+												required th:value="${candidate}" th:field="*{candidate}">
+											<img class="mr-3 candidate-img rounded-circle"
+												th:src="@{${'images/candidate/'+candidate+'.png'}}"
+												th:alt="${candidate}">
+											<div class="media-body">
+												<h5 class="mt-0" th:text="${candidate}"></h5>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="form-group row mt-5">
+									<div class="col text-center">
+										<button class="btn btn-warning" style="width: 25%;">Vote</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-    <div class="col-md-4" "form-check form-check-inline">
-	  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-	  <label class="form-check-label" for="inlineRadio1">Mary</label>
-	  
-	</div>
-    <div class="col-md-4" "form-check form-check-inline">
-	  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-	  <label class="form-check-label" for="inlineRadio2">Susan</label>
-	  
-	</div>
-  </div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script src="https://kit.fontawesome.com/dd0ec8033e.js"></script>
+	<script src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+
+	<script th:inline="javascript">
   
-  <div class="row">
-  <div class="col-md-4">
-  <img src="/images/john.jpg" class="responsive">
-  </div>
-  <div class="col-md-4">
-  <img src="/images/mary.jpg" class="responsive">
-  </div>
-  <div class="col-md-4">
-  <img src="/images/susan.jpg" class="responsive">
-  </div>
-  </div>
-  <br/>
-  <p><button type="submit" class="btn btn-primary">Vote</button><br/></p>
-  <p><button type="submit" class="btn btn-primary">View Polling Results</button><br/></p>
-  <!-- Bar chart-->
-  <canvas id="myChart" style="max-width: 500px; background-color:black"></canvas>
-  <script type="text/javascript">
-	var ctx = document.getElementById('myChart').getContext('2d');
-	var myChart = new Chart(ctx, {
-	type: 'bar',
-	data: {
-	labels: ["John", "Mary", "Susan"],
-	datasets: [{
-	label: '# of Votes',
-	data: [25, 19, 30],
-	backgroundColor: [
-	'rgba(255, 99, 132, 0.2)',
-	'rgba(255, 99, 132, 0.2)',
-	'rgba(255, 99, 132, 0.2)'
-	],
-	borderColor: [
-	'rgba(255,99,132,1)',
-	'rgba(255, 99, 132, 1)',
-	'rgba(255, 99, 132, 1)'
-	],
-	borderWidth: 1
-	}]
-	},
-	options: {
-	scales: {
-	yAxes: [{
-	ticks: {
-	beginAtZero: true
-	}
-	}]
-	}
-	}
-	});
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+
+  		function drawChart() {
+	  		var obj = /*[[${pollResult}]]*/;
+	  		const myMap = new Map(Object.entries(obj));
+	  		const  arr = Array.from(myMap).map(([name, value]) => ([name, value]))
+			arr.splice(0, 0, ['Candidates', 'Number of votes']);
+			arr.join();
+	 
+   			var data = google.visualization.arrayToDataTable(arr);
+
+		    var options = {
+		      title: 'Election Result',
+		      is3D: true,
+		      slices: {  4: {offset: 0.2},
+                  12: {offset: 0.3},
+                  14: {offset: 0.4},
+                  15: {offset: 0.5},
+        		},
+		    };
+
+    		var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+    		chart.draw(data, options); 
+  		}
   </script>
-  
-  <div class="col-md-5">
-  <canvas id="myChart"></canvas>
-</div>
-  
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-
 </body>
 </html>
