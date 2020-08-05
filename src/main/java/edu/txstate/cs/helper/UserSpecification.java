@@ -25,6 +25,6 @@ public class UserSpecification {
 		if(StringUtils.isEmpty(departmentName))
 			return (user, cq, cb) -> cb.conjunction();
 		else
-			return (user, cq, cb) -> cb.equal(user.get("departmentName"), departmentName);
+			return (user, cq, cb) -> cb.equal(user.get("department"), departmentName);
 	}
 }

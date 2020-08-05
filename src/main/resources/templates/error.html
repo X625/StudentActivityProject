@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>People Search</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> 
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+</head>
+<body>
+	<div th:insert="navbar :: navbar"></div>
+	<div class="container container-margin">
+		<div class="d-flex justify-content-center">
+			<div class="card box2d">
+				<div class="card-header">
+					<div class="d-flex justify-content-end social_icon">
+						<span><i class="fas fa-bug"></i></span>
+					</div>
+				</div>
+
+				<div class="card-body">
+					<div class="container">
+						<h3 th:text="${msg}"></h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script src="https://kit.fontawesome.com/dd0ec8033e.js"></script>
+	<script src="js/jGravity.js"></script>
+	<script>
+		
+		$('body').jGravity({
+			  target:'everything',
+			/*   drag:true */
+		});
+		
+	</script>
+</body>
+</html>

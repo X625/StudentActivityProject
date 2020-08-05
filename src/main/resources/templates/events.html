@@ -103,7 +103,7 @@
 									<div class="row"  th:each="e,itr: ${monthKey.value}">									
 										<div class="media">
 										  <img class="mr-3 calendar" th:if="${itr.index ==0 }" th:src="@{${'images/month/'+monthKey.key+'.png'}}">
-										  <img class="mr-3 calendar" th:unless="${itr.index ==0 }" src="images/none.png">
+										  <img class="mr-3 calendar" th:unless="${itr.index ==0 }" src="images/month/none.png">
 										  <div class="media-body">
 										    	<li><span th:text="${e.name}"></span></li>
 										  </div>

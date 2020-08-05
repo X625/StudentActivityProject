@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import edu.txstate.cs.model.bto.UserBTO;
 import edu.txstate.cs.service.UserService;
@@ -18,7 +16,7 @@ public class LoginController {
 	
 	
 	@GetMapping("/login")
-	public String showLoginPage(Model model) {
+	public String showLoginPage(Model model) throws Exception {
 		model.addAttribute("user", new UserBTO());
 		return "login";
 	}

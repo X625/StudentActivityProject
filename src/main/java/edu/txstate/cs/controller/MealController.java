@@ -25,21 +25,15 @@ public class MealController {
 		bto.setIsmonthly(true);
 		model.addAttribute("meal",bto);
 		model.addAttribute("meals", svc.getAllUserMealPlans());
-		System.out.println(error);
 		return "meals";
 	}
 	
 	@PostMapping("/meals")
 	public String purchaseMealPlan(@ModelAttribute("meal") MealBTO bto, RedirectAttributes redir) {
-		
-		System.out.println(bto);
-
 		boolean result = svc.purchaseMealPlan(bto);
-		System.out.println(result);
 		if(!result) {
 			 redir.addFlashAttribute("error","Cannot purchase duplicate meal plan");
 		}
-	   
 	    return "redirect:meals";
 	}
 }

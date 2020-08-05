@@ -3,16 +3,19 @@ package edu.txstate.cs.helper;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+
 import edu.txstate.cs.model.bto.BookBTO;
 import edu.txstate.cs.model.bto.EventBTO;
 import edu.txstate.cs.model.bto.MealBTO;
-import edu.txstate.cs.model.bto.UserBTO;
 import edu.txstate.cs.model.bto.RoommateBTO;
+import edu.txstate.cs.model.bto.UserBTO;
 import edu.txstate.cs.model.dto.Book;
 import edu.txstate.cs.model.dto.Event;
+import edu.txstate.cs.model.dto.Roommate;
 import edu.txstate.cs.model.dto.User;
 import edu.txstate.cs.model.embeddable.Meal;
-import edu.txstate.cs.model.dto.Roommate;
 
 
 
@@ -20,6 +23,8 @@ public class Util {
 	
 
 	public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+	
+	private static JavaMailSenderImpl sender;
 	
 	public static String convertLocalDateToString(LocalDate date) {
 		return date.format(DATE_FORMATTER);
@@ -85,7 +90,6 @@ public class Util {
 	}
 
 	public static String encodePassword(String password) {
-		
 		return password;
 	}
 	

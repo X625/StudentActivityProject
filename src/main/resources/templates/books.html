@@ -53,7 +53,7 @@
 					
 						<ul class="list-group list-group-flush">
 					    	<li class="list-group-item" th:each="book: ${books}">
-					    	<div class="media white">
+					    	<div class="media black">
 							  <img class="mr-3" th:src="${book.image}" style="height:150px;">
 							  <div class="media-body">
 							    <h5 class="mt-0" th:text="${book.title}"></h5>
@@ -103,12 +103,12 @@
 				  </div>
 				
 				  <div class="card-body">
-				    <div class="container-fluid">
+				    <div class="container">
 						<table class="table">
 						  	<tbody>
-						    	<tr th:each="book: ${userbooks}">
-						     		<td th:text="${book.title}">></td>
-						     		<td th:text="${book.price}">></td>
+						    	<tr th:each="book,itr: ${userbooks}">
+						     		<td th:text="${book.title}" style="text-align: left"></td>
+						     		<td th:text="${book.price}" style="text-align: right"></td>
 						    	</tr>
 						  	</tbody>
 						</table>

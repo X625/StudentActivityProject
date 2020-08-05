@@ -112,16 +112,23 @@ public class User {
 	public User() {
 	}
 
-	public User(String fname, String lname, String username, String email) {
+	public User(String fname, String lname, String email, String phoneNumber, String department) {
+		this.fname = fname;
+		this.lname = lname;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+		this.department = department;
+	}
+
+
+	
+	
+	public User(String fname, String lname, String username, String email, int candidate) {
 		this.fname = fname;
 		this.lname = lname;
 		this.username = username;
 		this.email = email;
-	}
-
-	public User(String fname, String lname, String username, String email, String department) {
-		this(fname, lname, username, email);
-		this.department = department;
+		this.vote = Candidate.values()[candidate];
 	}
 	
 	public void addPurchasedBook(Book book, double paid) {
@@ -186,5 +193,7 @@ public class User {
 			this.vote = candidate;
 		}
 	}
+
+	
 
 }

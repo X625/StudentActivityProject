@@ -11,4 +11,5 @@ public class StudentActivityProjectApplication {
 		SpringApplication.run(StudentActivityProjectApplication.class, args);
 	}
 	
+	
 }

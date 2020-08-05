@@ -9,6 +9,7 @@ import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 import static org.springframework.data.jpa.domain.Specification.where;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -18,7 +19,9 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -48,6 +51,9 @@ public class UserService {
 	
 	@Autowired
 	PasswordTokenRepository passwordTokenRepository;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	
 	@Autowired
@@ -188,25 +194,29 @@ public class UserService {
 	
 	public boolean forgotPassword(String email) {
 		final User user = userRepo.findByEmail(email);
-//		if(user != null) {
-//			final String token = UUID.randomUUID().toString();
-//			final PasswordResetToken myToken = new PasswordResetToken(token, user);
-//			passwordTokenRepository.save(myToken);
-//			// sendEmail
-//			return true;
-//		}
+		if(user != null) {
+			final String token = UUID.randomUUID().toString();
+			passwordTokenRepository.save(new PasswordResetToken(token, user));
+			
+			String text = "http://localhost:8080/resetpassword?token="+token;
+			emailService.sendEmail(user.getEmail(),"Reset your password",text);
+			return true;
+		}
 		return false;
 	}
 	
-	
-	public void resetPassword(String token) {
-		PasswordResetToken userToken = passwordTokenRepository.findByToken(token);
-		if(userToken != null) {
-			final User user = userToken.getUser();
-//			final Authentication auth = new UsernamePasswordAuthenticationToken(user, null, userDetailsService.loadUserByUsername(user.getEmail())).get
-		}
-	}
 
+	public boolean isResetPasswordTokenValid(String token) {
+		PasswordResetToken userToken = passwordTokenRepository.findByToken(token);
+		if(userToken != null && userToken.getUpdated() == null && userToken.getExpired().compareTo(new Date()) > 0) {
+			final User user = userToken.getUser();			
+			UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
+			final Authentication auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+			SecurityContextHolder.getContext().setAuthentication(auth);
+			return true;
+		}
+		return false;
+	}
 
 
 	public String getLoggedInDisplayname() {
@@ -215,7 +225,17 @@ public class UserService {
 	
 	
 	public User getLoggedInUser() {
-		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		return userRepo.findByUsername(username);
+		 UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		 return userRepo.findByUsername(ud.getUsername());
+	}
+
+
+	public void resetPasssword(String password) {
+		User user = getLoggedInUser();
+		PasswordResetToken prToken = passwordTokenRepository.findByUserAndUpdatedIsNull(user);
+		prToken.setUpdated(new Date());
+		passwordTokenRepository.save(prToken);
+		user.setPassword(passwordEncoder.encode(password));
+		userRepo.save(user);
 	}
 }
