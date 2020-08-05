@@ -72,7 +72,7 @@
 							     	</div>
 							      	<div class="block">
 							      		 <strong>Price: </strong>
-							      		 <span  th:classappend="${total > 200} ? line-through" th:text="${book.price}"></span>
+							      		 <span  th:classappend="${total > 200} ? linethrough" th:text="${book.price}"></span>
 							      		 <span  th:if="${total > 200}"  th:text="${#numbers.formatDecimal(book.price * 0.9, 0, 2)}"></span>
 							      	</div>
 							    	<form method="post" th:action="@{/purchase/books/{id}(id=${book.id})}" >

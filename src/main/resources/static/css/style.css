@@ -175,3 +175,7 @@ input.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
 input.form-control::-ms-input-placeholder { /* Microsoft Edge */
     opacity: .5;
 }
+
+.linethrough{
+	text-decoration: line-through;
+}

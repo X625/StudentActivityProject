@@ -64,9 +64,9 @@ public class DbInitializer implements CommandLineRunner {
 		UserBTO bto = new UserBTO();
 		bto.setFname("aidin");
 		bto.setLname("haghparast");
-		bto.setUsername("user");
-		bto.setEmail("user@gmail.com");
-		bto.setPassword("pass");
+		bto.setUsername("aidinx625");
+		bto.setEmail("aidinx625@gmail.com");
+		bto.setPassword("123");
 		svc.signup(bto);
 	}
 
