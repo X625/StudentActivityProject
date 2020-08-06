@@ -123,12 +123,13 @@ public class User {
 
 	
 	
-	public User(String fname, String lname, String username, String email, int candidate) {
+	public User(String fname, String lname, String username, String email, int candidate, String department) {
 		this.fname = fname;
 		this.lname = lname;
 		this.username = username;
 		this.email = email;
 		this.vote = Candidate.values()[candidate];
+		this.department = department;
 	}
 	
 	public void addPurchasedBook(Book book, double paid) {

@@ -165,26 +165,26 @@ public class DbInitializer implements CommandLineRunner {
 	private void initializeStudents() {
 		Random rand = new Random();
 		
-		urepo.saveAll(Arrays.asList(new User("Abhang","Aditi","aaa333","aaa333@txstate.edu",rand.nextInt(3)),
-				new User("Anderson","Blake","bma31","bma31@txstate.edu",rand.nextInt(3)),
-				new User("Armen","Sahara","s_a554","s_a554@txstate.edu",rand.nextInt(3)),
-				new User("Armstrong","Josh","yak3","yak3@txstate.edu",rand.nextInt(3)),
-				new User("Bante","Sonali","s_b611","s_b611@txstate.edu",rand.nextInt(3)),
-				new User("Bao","Olivia","y_l128","y_l128@txstate.edu",rand.nextInt(3)),
-				new User("Barber","Rebekah","rab257","rab257@txstate.edu",rand.nextInt(3)),
-				new User("Bowen","Reid","rab238","rab238@txstate.edu",rand.nextInt(3)),
-				new User("Buddingh","Tijmen","tjb151","tjb151@txstate.edu",rand.nextInt(3)),
-				new User("Carrasco","Aaron","adc129","adc129@txstate.edu",rand.nextInt(3)),
-				new User("Chaney","Trevor","t_c296","t_c296@txstate.edu",rand.nextInt(3)),
-				new User("Choppa","Thanmai","t_c335","t_c335@txstate.edu",rand.nextInt(3)),
-				new User("Choudhary","Shivani","s_c780","s_c780@txstate.edu",rand.nextInt(3)),
-				new User("Credit","Keondre","kdc117","kdc117@txstate.edu",rand.nextInt(3)),
-				new User("Currie","Mason","mec155","mec155@txstate.edu",rand.nextInt(3)),
-				new User("Fitzgerald","Philip","paf47","paf47@txstate.edu",rand.nextInt(3)),
-				new User("Gonzalez","Nicholas","nmg72","nmg72@txstate.edu",rand.nextInt(3)),
-				new User("Greenberg","Daniel","dmg143","dmg143@txstate.edu",rand.nextInt(3)),
-				new User("Gross","Stephen","sg1122","sg1122@txstate.edu",rand.nextInt(3)),
-				new User("Hale","Richard","rh1085","rh1085@txstate.edu",rand.nextInt(3))));
+		urepo.saveAll(Arrays.asList(new User("Abhang","Aditi","aaa333","aaa333@txstate.edu",rand.nextInt(3),"Computer Science"),
+				new User("Anderson","Blake","bma31","bma31@txstate.edu",rand.nextInt(3),"Computer Science"),
+				new User("Armen","Sahara","s_a554","s_a554@txstate.edu",rand.nextInt(3),"Computer Science"),
+				new User("Armstrong","Josh","yak3","yak3@txstate.edu",rand.nextInt(3),"Computer Science"),
+				new User("Bante","Sonali","s_b611","s_b611@txstate.edu",rand.nextInt(3),"Computer Science"),
+				new User("Bao","Olivia","y_l128","y_l128@txstate.edu",rand.nextInt(3),"Computer Science"),
+				new User("Barber","Rebekah","rab257","rab257@txstate.edu",rand.nextInt(3),"Computer Science"),
+				new User("Bowen","Reid","rab238","rab238@txstate.edu",rand.nextInt(3),"Computer Science"),
+				new User("Buddingh","Tijmen","tjb151","tjb151@txstate.edu",rand.nextInt(3),"Computer Science"),
+				new User("Carrasco","Aaron","adc129","adc129@txstate.edu",rand.nextInt(3),"Computer Science"),
+				new User("Chaney","Trevor","t_c296","t_c296@txstate.edu",rand.nextInt(3),"Computer Science"),
+				new User("Choppa","Thanmai","t_c335","t_c335@txstate.edu",rand.nextInt(3),"Computer Science"),
+				new User("Choudhary","Shivani","s_c780","s_c780@txstate.edu",rand.nextInt(3),"Computer Science"),
+				new User("Credit","Keondre","kdc117","kdc117@txstate.edu",rand.nextInt(3),"Computer Science"),
+				new User("Currie","Mason","mec155","mec155@txstate.edu",rand.nextInt(3),"Computer Science"),
+				new User("Fitzgerald","Philip","paf47","paf47@txstate.edu",rand.nextInt(3),"Computer Science"),
+				new User("Gonzalez","Nicholas","nmg72","nmg72@txstate.edu",rand.nextInt(3),"Computer Science"),
+				new User("Greenberg","Daniel","dmg143","dmg143@txstate.edu",rand.nextInt(3),"Computer Science"),
+				new User("Gross","Stephen","sg1122","sg1122@txstate.edu",rand.nextInt(3),"Computer Science"),
+				new User("Hale","Richard","rh1085","rh1085@txstate.edu",rand.nextInt(3),"Computer Science")));
 		
 	}
 	
