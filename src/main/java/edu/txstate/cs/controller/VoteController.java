@@ -19,6 +19,19 @@ public class VoteController {
 	@Autowired
 	UserService svc;
 		
+	@GetMapping("/secret")
+	public String showSecretPage(Model model) {
+		Map<Candidate, Long> pollResult = svc.getVoteResults();
+		model.addAttribute("pollResult", pollResult);
+		return "secret";
+	}
+	
+//	@PostMapping("/secret")
+//	public String vote() {
+//		svc.generateNewPoll();
+//		return "redirect:/secret";
+//	}
+//	
 	
 	
 	@GetMapping("/election")

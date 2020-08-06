@@ -83,7 +83,7 @@ public class Util {
 		return bto;
 	}
 	
-	public static Meal mapToMeal(MealBTO btot) {
+	public static Meal mapToMeal(MealBTO bto) {
 		String name = bto.isIsmonthly() ? bto.getMonthlydate() : bto.getSem()+" "+bto.getSemyear();
 		int price = bto.isIsmonthly()? 600 : 1710;
 		return new Meal(name, price);

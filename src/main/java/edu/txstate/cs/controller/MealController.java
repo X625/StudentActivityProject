@@ -1,5 +1,7 @@
 package edu.txstate.cs.controller;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +26,13 @@ public class MealController {
 		MealBTO bto = new MealBTO();
 		bto.setIsmonthly(true);
 		model.addAttribute("meal",bto);
-		model.addAttribute("meals", svc.getAllUserMealPlans());
+		Set<MealBTO> meals = svc.getAllUserMealPlans();
+		if(meals != null) {
+			int total = meals.stream().mapToInt(MealBTO::getPrice).sum();
+			model.addAttribute("total", total);
+		}
+		
+		model.addAttribute("meals", meals);
 		return "meals";
 	}
 	

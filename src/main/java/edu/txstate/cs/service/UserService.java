@@ -12,13 +12,13 @@ import static org.springframework.data.jpa.domain.Specification.where;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -238,5 +238,20 @@ public class UserService {
 		passwordTokenRepository.save(prToken);
 		user.setPassword(passwordEncoder.encode(password));
 		userRepo.save(user);
+	}
+
+
+
+	public void generateNewPoll() {
+		User loggedinUser = getLoggedInUser();
+		List<User> users = userRepo.findAll();
+		Random rand = new Random();
+		for(User u : users) {
+			if(u.getUsername() != loggedinUser.getUsername()) {
+				u.setVote(Candidate.values()[rand.nextInt(3)]);
+				userRepo.save(u);
+			}
+		}
+		
 	}
 }

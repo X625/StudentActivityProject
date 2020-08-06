@@ -92,6 +92,11 @@
 								</tr>
 							</tbody>
 						</table>
+						<div th:if="${meals != null && meals.size() > 0}">
+							<hr>
+							<strong class="float-left">Total:</strong>
+							<strong class="float-right" th:text="${#numbers.formatDecimal(total, 0, 2)}"></strong>
+						</div>
 					</div>
 				</div>
 			</div>
