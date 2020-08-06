@@ -83,15 +83,10 @@ public class Util {
 		return bto;
 	}
 	
-	public static Meal mapToMeal(MealBTO bto) {
+	public static Meal mapToMeal(MealBTO btot) {
 		String name = bto.isIsmonthly() ? bto.getMonthlydate() : bto.getSem()+" "+bto.getSemyear();
-		int price = bto.isIsmonthly()? 600 : 570;
+		int price = bto.isIsmonthly()? 600 : 1710;
 		return new Meal(name, price);
 	}
 
-	public static String encodePassword(String password) {
-		return password;
-	}
-	
-	
 }

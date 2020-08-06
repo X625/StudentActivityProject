@@ -18,6 +18,7 @@ import java.util.UUID;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -144,7 +145,7 @@ public class UserService {
 		user.setEmail(bto.getEmail().toLowerCase());
 		user.setUsername(bto.getUsername().toLowerCase());
 		if(!StringUtils.isEmpty(bto.getPassword())) {
-			String encodedPassword = Util.encodePassword(bto.getPassword());
+			String encodedPassword = passwordEncoder.encode(bto.getPassword());
 			user.setPassword(encodedPassword);
 		}
 		
